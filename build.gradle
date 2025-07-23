@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.0.8"
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "5.1.0.4882"
+    id 'java-library'
+    id 'java'
+    id 'groovy'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.0.8"
+}
+
+group 'reto'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://pkgs.dev.azure.com/DEV-FormacionCH/f11a2ddb-f565-44a3-8710-e9e1472d29ee/_packaging/Choucair/maven/v1'
+    }
+}
+
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:3.9.8"
+    implementation "net.serenity-bdd:serenity-junit:3.9.8"
+    implementation "net.serenity-bdd:serenity-ensure:3.9.8"
+    implementation "net.serenity-bdd:serenity-cucumber:3.9.8"
+    implementation "net.serenity-bdd:serenity-screenplay:3.9.8"
+    implementation "net.serenity-bdd:serenity-report-resources:3.9.8"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:3.9.8"
+    implementation 'org.seleniumhq.selenium:selenium-java:4.17.0'
+    implementation 'org.seleniumhq.selenium:selenium-grid:4.17.0'
+    implementation "io.cucumber:datatable:3.9.8"
+    testImplementation "io.cucumber:cucumber-junit:3.9.8"
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha5'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0-alpha5'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.18.0'
+    implementation group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
+    implementation group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'com.oracle.database.jdbc:ojdbc8:23.2.0.0'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    implementation 'org.apache.poi:poi:5.2.3'
+    //LIBRERIAS CHOUCAIR
+    implementation(group: 'com.choucair', name: 'libreria', version: '2.1.4.1')
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "${project.findProperty('sonar.projectKey')}"
+        property "sonar.organization", "${project.findProperty('sonar.organization')}"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.login", "${project.findProperty('sonar.token')}"
+    }
+}
+
+
+test {
+    useJUnit {
+        include "**/*"
+        testLogging.showStandardStreams = true
+        systemProperties System.getProperties()
+        systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    }
+    ignoreFailures = true
+}
+
+
