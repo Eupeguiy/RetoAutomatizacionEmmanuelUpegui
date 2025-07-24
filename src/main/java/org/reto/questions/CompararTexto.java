@@ -26,7 +26,7 @@ public class CompararTexto implements Question<Boolean> {
 
         String textoWeb = elemento.resolveFor(actor).getText().trim();
 
-        logger.info("Dato:{}, Elemeto:{}", valorEsperado, textoWeb);
+        logger.info("Dato:{}, Elemento:{}", valorEsperado, textoWeb);
 
         return textoWeb.equals(valorEsperado);
 

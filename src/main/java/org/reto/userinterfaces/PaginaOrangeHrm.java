@@ -45,9 +45,9 @@ public class PaginaOrangeHrm {
             .locatedBy("(//div[contains(@class,'oxd-input-group')]//input)[2]");
     public static final Target BTN_BUSCAR_EMPLEADO = Target.the("Buscar el empleado")
             .located(By.cssSelector("button[type='submit'].oxd-button--secondary"));
-    public static final Target TXT_ID_EMPELADO = Target.the("Se visualiza el id del empelado")
+    public static final Target TXT_ID_EMPLEADO = Target.the("Se visualiza el id del empleado")
             .locatedBy("(//div[contains(@class,'oxd-table-cell') and contains(@class,'oxd-padding-cell') and @role='cell']/div)[2]");
-    public static final Target TXT_NOMBRES_EMPELADO = Target.the("Se visualizan el primer y segundo nombre del empleado")
+    public static final Target TXT_NOMBRES_EMPLEADO = Target.the("Se visualizan el primer y segundo nombre del empleado")
             .locatedBy("(//div[contains(@class,'oxd-table-cell') and contains(@class,'oxd-padding-cell') and @role='cell']/div)[3]");
     public static final Target TXT_APELLIDOS_EMPLEADO = Target.the("Se visualiza los apellidos del empleado")
             .locatedBy("(//div[contains(@class,'oxd-table-cell') and contains(@class,'oxd-padding-cell') and @role='cell']/div)[4]");
